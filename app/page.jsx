@@ -169,21 +169,19 @@ export default function Home() {
 
         <div className="space-y-8">
           {projects.map((project, idx) => (
-            <div
+            <Link
               key={idx}
-              className="group bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-2xl p-8 hover:border-slate-600 transition-all hover:shadow-xl hover:shadow-blue-500/10"
+              href={project.detailLink}
+              className="block group bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-2xl p-8 hover:border-slate-600 transition-all hover:shadow-xl hover:shadow-blue-500/10"
             >
               <div className="flex items-start justify-between mb-4">
                 <div>
                   <h3 className="text-2xl font-bold text-white mb-2">{project.name}</h3>
                   <p className="text-slate-300 mb-4">{project.description}</p>
                 </div>
-                <Link
-                  href={project.detailLink}
-                  className="p-3 bg-slate-700/50 rounded-full hover:bg-slate-600 transition-all flex-shrink-0"
-                >
+                <span className="p-3 bg-slate-700/50 rounded-full group-hover:bg-slate-600 transition-all flex-shrink-0">
                   <ArrowUpRight size={20} className="text-blue-400" />
-                </Link>
+                </span>
               </div>
 
               <div className="flex flex-wrap gap-2 mb-6">
@@ -194,13 +192,10 @@ export default function Home() {
                 ))}
               </div>
 
-              <Link
-                href={project.detailLink}
-                className="inline-block text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors"
-              >
+              <span className="inline-block text-sm font-medium text-blue-400 group-hover:text-blue-300 transition-colors">
                 Voir les détails du projet →
-              </Link>
-            </div>
+              </span>
+            </Link>
           ))}
         </div>
       </section>
