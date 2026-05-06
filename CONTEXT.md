@@ -121,9 +121,9 @@ Responsive : mobile-first, breakpoints `md:` et `lg:`
 ---
 
 ### Tâche 6 — Vérification finale : build de production
-- [ ] Lancer `npm run build`
-- [ ] Vérifier le build en local avec `npm run start`
-- [ ] Commit de clôture
+- [x] Lancer `npm run build`
+- [x] Vérifier le build en local avec `npm run start`
+- [x] Commit de clôture
 
 **→ Attendre validation d'Eden. Projet terminé.**
 
@@ -155,3 +155,4 @@ La page `/projects/flowdiff-pro` nécessite les éléments suivants qu'Eden four
 | 2026-05-06 | Tâche 3 terminée — layout.jsx créé, dev server OK |
 | 2026-05-06 | Tâche 4 terminée — page.jsx accueil créée, HTTP 200 confirmé |
 | 2026-05-06 | Tâche 5 terminée — FlowDiff Pro page créée, HTTP 200 sur les deux routes |
+| 2026-05-06 | Tâche 6 terminée — Build prod OK, / et /projects/flowdiff-pro répondent 200 |
