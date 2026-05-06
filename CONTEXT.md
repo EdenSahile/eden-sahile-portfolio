@@ -101,20 +101,20 @@ Responsive : mobile-first, breakpoints `md:` et `lg:`
 ---
 
 ### Tâche 4 — app/page.jsx : Page d'accueil (/)
-- [ ] Écrire la page complète (header, hero, stats, projets, expérience, compétences, CTA, footer)
-- [ ] Vérifier visuellement dans le navigateur sur `http://localhost:3000`
-- [ ] Commit
+- [x] Écrire la page complète (header, hero, stats, projets, expérience, compétences, CTA, footer)
+- [x] Vérifier visuellement dans le navigateur sur `http://localhost:3000`
+- [x] Commit
 
 **→ Attendre validation d'Eden avant de passer à la Tâche 5.**
 
 ---
 
 ### Tâche 5 — app/projects/flowdiff-pro/page.jsx : Page détail projet
-- [ ] Créer le dossier `app/projects/flowdiff-pro/`
-- [ ] Écrire la page (header, hero, highlights, onglets Overview/Tech/Features/Challenges, CTA, footer)
-- [ ] Vérifier visuellement sur `http://localhost:3000/projects/flowdiff-pro`
-- [ ] Intégrer le contenu fourni par Eden (highlights réels, features, challenges, liens live/GitHub)
-- [ ] Commit
+- [x] Créer le dossier `app/projects/flowdiff-pro/`
+- [x] Écrire la page (header, hero, highlights, onglets Overview/Tech/Features/Challenges, CTA, footer)
+- [x] Vérifier visuellement sur `http://localhost:3000/projects/flowdiff-pro`
+- [x] Intégrer le contenu fourni par Eden (highlights réels, features, challenges, liens live/GitHub)
+- [x] Commit
 
 **→ Attendre validation d'Eden avant de passer à la Tâche 6.**
 
@@ -153,3 +153,5 @@ La page `/projects/flowdiff-pro` nécessite les éléments suivants qu'Eden four
 | 2026-05-06 | Tâche 1 terminée — Next.js 14 scaffoldé, lucide-react installé, commit initial |
 | 2026-05-06 | Tâche 2 terminée — Tailwind darkMode:'class' configuré, globals.css créé |
 | 2026-05-06 | Tâche 3 terminée — layout.jsx créé, dev server OK |
+| 2026-05-06 | Tâche 4 terminée — page.jsx accueil créée, HTTP 200 confirmé |
+| 2026-05-06 | Tâche 5 terminée — FlowDiff Pro page créée, HTTP 200 sur les deux routes |
