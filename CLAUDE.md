@@ -26,7 +26,7 @@
 
 **Propriétaire :** Eden Sahilé — Product Owner technique, UX Design, Full-Stack JS  
 **Email :** edensahile2.0@gmail.com  
-**Répertoire :** `/Users/macbookeden/Documents/Claude/Portfolio/`
+**Répertoire :** `/Users/macbookeden/Documents/Claude/portfolio/`
 
 **Ce que c'est :** Portfolio personnel statique, 2 pages :
 - `/` — Accueil (header, hero, stats, projets, expérience, compétences, CTA, footer)

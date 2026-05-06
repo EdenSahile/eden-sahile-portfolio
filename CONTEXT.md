@@ -10,7 +10,7 @@
 
 **Nom :** Portfolio personnel Next.js 14  
 **Propriétaire :** Eden Sahilé  
-**Répertoire :** `/Users/macbookeden/Documents/Claude/Portfolio/`  
+**Répertoire :** `/Users/macbookeden/Documents/Claude/portfolio/`  
 **Objectif :** Portfolio statique 2 pages, dark mode permanent, déployable sur Vercel.
 
 ---
@@ -71,30 +71,30 @@ Responsive : mobile-first, breakpoints `md:` et `lg:`
 ## Tâches
 
 ### Tâche 1 — Scaffolding : initialiser le projet Next.js 14
-- [ ] Créer le projet via `npx create-next-app@14`
-- [ ] Installer `lucide-react`
-- [ ] Vérifier la structure générée
-- [ ] Commit initial
+- [x] Créer le projet via `npx create-next-app@14`
+- [x] Installer `lucide-react`
+- [x] Vérifier la structure générée
+- [x] Commit initial
 
 **→ Attendre validation d'Eden avant de passer à la Tâche 2.**
 
 ---
 
 ### Tâche 2 — Config : tailwind.config.js + globals.css
-- [ ] Remplacer `tailwind.config.js` (darkMode: 'class')
-- [ ] Vérifier `next.config.js`
-- [ ] Remplacer `app/globals.css` (directives Tailwind + body bg)
-- [ ] Commit
+- [x] Remplacer `tailwind.config.js` (darkMode: 'class')
+- [x] Vérifier `next.config.js`
+- [x] Remplacer `app/globals.css` (directives Tailwind + body bg)
+- [x] Commit
 
 **→ Attendre validation d'Eden avant de passer à la Tâche 3.**
 
 ---
 
 ### Tâche 3 — app/layout.jsx : RootLayout
-- [ ] Renommer `.js` → `.jsx` si nécessaire
-- [ ] Écrire `layout.jsx` (Inter, dark, metadata)
-- [ ] Lancer `npm run dev` et vérifier qu'il démarre sans erreur
-- [ ] Commit
+- [x] Renommer `.js` → `.jsx` si nécessaire
+- [x] Écrire `layout.jsx` (Inter, dark, metadata)
+- [x] Lancer `npm run dev` et vérifier qu'il démarre sans erreur
+- [x] Commit
 
 **→ Attendre validation d'Eden avant de passer à la Tâche 4.**
 
@@ -150,3 +150,6 @@ La page `/projects/flowdiff-pro` nécessite les éléments suivants qu'Eden four
 | 2026-05-06 | Spec design validée |
 | 2026-05-06 | Plan d'implémentation créé |
 | 2026-05-06 | CONTEXT.md et CLAUDE.md créés |
+| 2026-05-06 | Tâche 1 terminée — Next.js 14 scaffoldé, lucide-react installé, commit initial |
+| 2026-05-06 | Tâche 2 terminée — Tailwind darkMode:'class' configuré, globals.css créé |
+| 2026-05-06 | Tâche 3 terminée — layout.jsx créé, dev server OK |
