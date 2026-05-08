@@ -129,6 +129,18 @@ Responsive : mobile-first, breakpoints `md:` et `lg:`
 
 ---
 
+### Tâche 7 — Crazee Burger : carte homepage + page détail
+- [ ] Ajouter l'entrée Crazee Burger dans le tableau `projects[]` de `app/page.jsx`
+- [ ] Créer `app/projects/crazee-burger/page.jsx` (page détail 3 onglets)
+- [ ] Vérifier le build de production (`npm run build`)
+
+**Spec :** `docs/superpowers/specs/2026-05-08-crazee-burger-design.md`  
+**Plan :** `docs/superpowers/plans/2026-05-08-crazee-burger.md`
+
+**→ Attendre validation d'Eden avant de considérer la tâche terminée.**
+
+---
+
 ## Contenu à fournir par Eden
 
 La page `/projects/flowdiff-pro` nécessite les éléments suivants qu'Eden fournira :
@@ -156,3 +168,36 @@ La page `/projects/flowdiff-pro` nécessite les éléments suivants qu'Eden four
 | 2026-05-06 | Tâche 4 terminée — page.jsx accueil créée, HTTP 200 confirmé |
 | 2026-05-06 | Tâche 5 terminée — FlowDiff Pro page créée, HTTP 200 sur les deux routes |
 | 2026-05-06 | Tâche 6 terminée — Build prod OK, / et /projects/flowdiff-pro répondent 200 |
+| 2026-05-08 | Section Projets redesignée — grille 2 colonnes, cartes compactes (p-5, text-lg, tags xs) |
+| 2026-05-08 | Bug CSS disparu résolu — `next.config.mjs` : no-cache headers en dev, cache `.next` purgé |
+| 2026-05-08 | Tâche 7 créée — Spec + plan Crazee Burger validés, prêt à implémenter |
+
+---
+
+## À retenir
+
+### Bug CSS disparu (Next.js dev)
+
+**Symptôme :** Page s'affiche sans CSS (fond blanc, pas de couleurs, liens bleus non stylés).
+
+**Cause :** Next.js dev génère un nouveau hash de version pour les fichiers statiques (`?v=timestamp`) à chaque rebuild. Si le navigateur a l'ancien HTML en cache, il tente de charger les anciens fichiers CSS (ex. `layout.css?v=ancien`) → 404 → page sans style.
+
+**Fix permanent appliqué dans `next.config.mjs` :**
+```js
+async headers() {
+  if (process.env.NODE_ENV !== 'development') return [];
+  return [{ source: '/(.*)', headers: [{ key: 'Cache-Control', value: 'no-cache, no-store, must-revalidate' }] }];
+}
+```
+→ Le navigateur ne met plus jamais en cache le HTML en dev. Aucun impact en production.
+
+**Si le bug réapparaît malgré tout :**
+1. Hard refresh dans le navigateur : `Cmd+Shift+R`
+2. Supprimer le dossier `.next/` et relancer `npm run dev`
+
+### Section Projets — layout grille
+
+**Pattern adopté :** `grid grid-cols-1 md:grid-cols-2 gap-5` au lieu de `space-y-8`.
+Cartes compactes : `p-5`, titre `text-lg`, description `text-sm`, tags `text-xs px-2.5 py-0.5`.
+Le lien "Voir les détails →" a été retiré (la carte entière est cliquable via `<Link>`).
+Hover : bordure `blue-500/50` + icône ArrowUpRight qui s'illumine en bleu.
