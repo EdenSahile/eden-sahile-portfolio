@@ -130,9 +130,9 @@ Responsive : mobile-first, breakpoints `md:` et `lg:`
 ---
 
 ### Tâche 7 — Crazee Burger : carte homepage + page détail
-- [ ] Ajouter l'entrée Crazee Burger dans le tableau `projects[]` de `app/page.jsx`
-- [ ] Créer `app/projects/crazee-burger/page.jsx` (page détail 3 onglets)
-- [ ] Vérifier le build de production (`npm run build`)
+- [x] Ajouter l'entrée Crazee Burger dans le tableau `projects[]` de `app/page.jsx`
+- [x] Créer `app/projects/crazee-burger/page.jsx` (page détail 3 onglets)
+- [x] Vérifier le build de production (`npm run build`)
 
 **Spec :** `docs/superpowers/specs/2026-05-08-crazee-burger-design.md`  
 **Plan :** `docs/superpowers/plans/2026-05-08-crazee-burger.md`
@@ -171,6 +171,7 @@ La page `/projects/flowdiff-pro` nécessite les éléments suivants qu'Eden four
 | 2026-05-08 | Section Projets redesignée — grille 2 colonnes, cartes compactes (p-5, text-lg, tags xs) |
 | 2026-05-08 | Bug CSS disparu résolu — `next.config.mjs` : no-cache headers en dev, cache `.next` purgé |
 | 2026-05-08 | Tâche 7 créée — Spec + plan Crazee Burger validés, prêt à implémenter |
+| 2026-05-08 | Tâche 7 terminée — Crazee Burger ajouté : carte homepage + page détail /projects/crazee-burger |
 
 ---
 
