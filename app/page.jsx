@@ -27,6 +27,13 @@ export default function Home() {
       link: 'https://book-flow-omega.vercel.app/login',
       detailLink: '/projects/flowdiff-pro',
     },
+    {
+      name: 'Crazee Burger',
+      description: "Application de commande de burgers développée sans IA dans le cadre d'une formation React complète.",
+      tags: ['React', 'ViteJS', 'Firebase', 'Styled-Components'],
+      link: 'https://crazee-burger-phi-murex.vercel.app/order/EDEN',
+      detailLink: '/projects/crazee-burger',
+    },
   ];
 
   const experience = [
@@ -167,34 +174,29 @@ export default function Home() {
       <section id="projets" className="max-w-6xl mx-auto px-6 py-20 border-t border-slate-800">
         <h2 className="text-4xl font-bold text-white mb-12">Projets</h2>
 
-        <div className="space-y-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {projects.map((project, idx) => (
             <Link
               key={idx}
               href={project.detailLink}
-              className="block group bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-2xl p-8 hover:border-slate-600 transition-all hover:shadow-xl hover:shadow-blue-500/10"
+              className="group bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-xl p-5 hover:border-blue-500/50 transition-all hover:shadow-lg hover:shadow-blue-500/10 flex flex-col"
             >
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <h3 className="text-2xl font-bold text-white mb-2">{project.name}</h3>
-                  <p className="text-slate-300 mb-4">{project.description}</p>
-                </div>
-                <span className="p-3 bg-slate-700/50 rounded-full group-hover:bg-slate-600 transition-all flex-shrink-0">
-                  <ArrowUpRight size={20} className="text-blue-400" />
+              <div className="flex items-start justify-between mb-3">
+                <h3 className="text-lg font-bold text-white leading-snug">{project.name}</h3>
+                <span className="ml-3 p-2 bg-slate-700/50 rounded-lg group-hover:bg-blue-500/20 group-hover:text-blue-400 transition-all flex-shrink-0">
+                  <ArrowUpRight size={16} className="text-slate-400 group-hover:text-blue-400 transition-colors" />
                 </span>
               </div>
 
-              <div className="flex flex-wrap gap-2 mb-6">
+              <p className="text-sm text-slate-400 leading-relaxed mb-4 flex-1">{project.description}</p>
+
+              <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag, i) => (
-                  <span key={i} className="px-3 py-1 bg-slate-700 text-slate-200 text-sm rounded-full">
+                  <span key={i} className="px-2.5 py-0.5 bg-slate-700/70 text-slate-300 text-xs rounded-full border border-slate-600/50">
                     {tag}
                   </span>
                 ))}
               </div>
-
-              <span className="inline-block text-sm font-medium text-blue-400 group-hover:text-blue-300 transition-colors">
-                Voir les détails du projet →
-              </span>
             </Link>
           ))}
         </div>
