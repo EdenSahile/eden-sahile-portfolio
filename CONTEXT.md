@@ -181,7 +181,9 @@ La page `/projects/flowdiff-pro` nécessite les éléments suivants qu'Eden four
 
 **Symptôme :** Page s'affiche sans CSS (fond blanc, pas de couleurs, liens bleus non stylés).
 
-**Cause :** Next.js dev génère un nouveau hash de version pour les fichiers statiques (`?v=timestamp`) à chaque rebuild. Si le navigateur a l'ancien HTML en cache, il tente de charger les anciens fichiers CSS (ex. `layout.css?v=ancien`) → 404 → page sans style.
+**Cause principale (confirmée) :** Quand `npm run build` est lancé pendant une session de dev, `.next/` est remplacé par des assets de production (CSS haché ex. `55c36e2fc3ecc8c2.css`). Si `npm run dev` redémarre sans nettoyer `.next/`, le dev server génère du HTML qui référence `_next/static/css/app/layout.css?v=...` (chemin dev) mais ce fichier n'existe pas → **404 permanent**. Le CSS passe alors uniquement par le bundle HMR/JS, ce qui est instable.
+
+**Cause secondaire :** Next.js dev génère un `?v=timestamp` différent à chaque requête HTML. Si le navigateur a l'ancien HTML en cache, il tente de charger les anciens fichiers CSS → 404 → page sans style.
 
 **Fix permanent appliqué dans `next.config.mjs` :**
 ```js
@@ -192,9 +194,11 @@ async headers() {
 ```
 → Le navigateur ne met plus jamais en cache le HTML en dev. Aucun impact en production.
 
-**Si le bug réapparaît malgré tout :**
-1. Hard refresh dans le navigateur : `Cmd+Shift+R`
-2. Supprimer le dossier `.next/` et relancer `npm run dev`
+**⚠️ Règle absolue :** Ne jamais enchaîner `npm run build` et `npm run dev` sans nettoyer `.next/` entre les deux.
+
+**Si le bug réapparaît :**
+1. Hard refresh : `Cmd+Shift+R`
+2. **Fix réel :** `rm -rf .next && npm run dev` — repart proprement, CSS servi correctement
 
 ### Section Projets — layout grille
 
