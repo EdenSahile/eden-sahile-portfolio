@@ -245,8 +245,12 @@ Build de production vérifié après corrections, `.next/` nettoyé.
 ---
 
 ### Tâche 14 — GitHub
-- [ ] Création du repo GitHub privé
-- [ ] Premier commit + push
+- [x] `.gitignore` complété (`.playwright-mcp/`, captures d'écran de vérification à la racine)
+- [x] Commit unique de toute la refonte (34 fichiers, redesign complet)
+- [x] Création du repo GitHub privé — `eden-sahile-portfolio` (le nom `portfolio` était déjà pris par un ancien repo de 2022, non lié à ce projet)
+- [x] Push initial sur `main`
+
+**Repo :** https://github.com/EdenSahile/eden-sahile-portfolio (privé)
 
 **→ Fin du plan de refonte.**
 
@@ -288,6 +292,7 @@ Build de production vérifié après corrections, `.next/` nettoyé.
 | 2026-08-16 | Sous-titre header changé : "PO/AI PRODUCT BUILDER" → "Product Owner IA" (`SiteHeader.jsx`) |
 | 2026-08-16 | CTA final accueil : texte "sur votre besoin" → "sur le poste" ; mailto centralisé (`ContactCta.jsx`) mis à jour vers edensahile28@gmail.com |
 | 2026-08-16 | Skill ui-ux-pro-max consulté sur le parcours de contact — bouton "Me contacter" du hero pointait vers un second bouton identique en bas de page. Recommandation retenue par Eden : mailto direct sur le bouton hero (plus de clic redondant) |
+| 2026-08-16 | Tâche 14 terminée — repo GitHub privé `eden-sahile-portfolio` créé, commit unique de la refonte poussé sur `main` |
 
 ---
 
