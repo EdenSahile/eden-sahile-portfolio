@@ -122,11 +122,11 @@ export default function Home() {
                 Product Owner spécialisée dans les produits augmentés par l&apos;<span className="text-accent">IA</span>
               </h1>
               <p className="text-lg leading-relaxed text-muted mb-12 max-w-[640px]">
-                Product Owner depuis 4 ans, avec plus de 20 ans d&apos;expérience transverse entre métier, digital et
-                produit, je couvre <span className="text-accent">l&apos;<b>ensemble du cycle de conception</b></span> :{' '}
-                <b>découverte</b>, <b>cadrage</b>, <b>user stories</b>, <b>wireframes</b>, <b>maquettes</b> et{' '}
-                <b>livraison</b>. Aujourd&apos;hui, j&apos;étends cette expertise à l&apos;intégration de l&apos;IA et de
-                l&apos;automatisation dans les pratiques produit.
+                Je conçois et fais évoluer des produits digitaux de la découverte à la livraison, en combinant
+                Product Ownership, IA, automatisation et culture technique.
+                <br />
+                Je construis également des prototypes et outils IA pour transformer des problématiques métier en
+                solutions concrètes.
               </p>
               <div className="flex flex-wrap gap-4">
                 <a
