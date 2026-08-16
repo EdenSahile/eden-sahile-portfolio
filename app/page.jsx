@@ -1,105 +1,114 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import photoProfil from '../public/images/photo-profil.png';
-import SiteHeader from './components/SiteHeader';
-import SiteFooter from './components/SiteFooter';
-import ContactCta from './components/ContactCta';
+import Link from "next/link";
+import Image from "next/image";
+import photoProfil from "../public/images/photo-profil.png";
+import SiteHeader from "./components/SiteHeader";
+import SiteFooter from "./components/SiteFooter";
+import ContactCta from "./components/ContactCta";
 
 const previewProjects = [
   {
-    num: '01',
-    category: 'GEN-AI OPS',
-    title: 'Landing page demande de devis (envoi devis automatique)',
+    num: "01",
+    category: "GEN-AI OPS",
+    title: "Landing page demande de devis (envoi devis automatique)",
     description:
       "Maison Buna qui est une entreprise qui vend du café avait besoin d'une landing page où les clients pouvaient effectuer des demandes de devis avec un envoi automatique des devis au format PDF par mail.",
-    contexte: 'Scale-up SaaS',
-    resultat: 'Outil livré',
-    tags: ['CLAUDE CODE', 'OPENAI', 'PRO'],
-    href: '/projets/maison-buna',
+    contexte: "Scale-up SaaS",
+    resultat: "Outil livré",
+    tags: ["CLAUDE CODE", "OPENAI", "PRO"],
+    href: "/projets/maison-buna",
   },
   {
-    num: '02',
-    category: 'PRODUCT OWNERSHIP',
+    num: "02",
+    category: "PRODUCT OWNERSHIP",
     title: "StoryForge AI : Générateur d'user stories",
-    description: "Outil qui permet de générer des user stories contextualisé avec la mise en place d'un RAG",
-    contexte: 'Fintech Tier 1',
-    resultat: 'Zero Downtime',
-    tags: ['JIRA', 'SQL', 'PERSO'],
-    href: '/projets/storyforge-ai',
+    description:
+      "Outil qui permet de générer des user stories contextualisé avec la mise en place d'un RAG",
+    contexte: "Fintech Tier 1",
+    resultat: "Zero Downtime",
+    tags: ["JIRA", "SQL", "PERSO"],
+    href: "/projets/storyforge-ai",
   },
   {
-    num: '03',
-    category: 'LLM INTEGRATION',
-    title: 'Assistant Support Client RAG',
+    num: "03",
+    category: "LLM INTEGRATION",
+    title: "Assistant Support Client RAG",
     description:
-      'Implémentation d\'une base de connaissance vectorielle pour automatiser 60% des tickets de support niveau 1.',
-    contexte: 'E-commerce',
-    resultat: '-30% OpEx',
-    tags: ['PINECONE', 'LANGCHAIN', 'PYTHON'],
-    href: '/projets/support-rag',
+      "Implémentation d'une base de connaissance vectorielle pour automatiser 60% des tickets de support niveau 1.",
+    contexte: "E-commerce",
+    resultat: "-30% OpEx",
+    tags: ["PINECONE", "LANGCHAIN", "PYTHON"],
+    href: "/projets/support-rag",
   },
 ];
 
 const flowSteps = [
   {
-    icon: 'bolt',
-    title: 'Déclencheur',
-    description: 'Webhook, Email, Nouveau Record Airtable',
-    variant: 'default',
+    icon: "bolt",
+    title: "Déclencheur",
+    description: "Webhook, Email, Nouveau Record Airtable",
+    variant: "default",
   },
   {
-    icon: 'psychology',
-    title: 'Logique IA',
-    description: 'LLM Processing, RAG, Extraction de Données',
-    variant: 'accent',
+    icon: "psychology",
+    title: "Logique IA",
+    description: "LLM Processing, RAG, Extraction de Données",
+    variant: "accent",
   },
   {
-    icon: 'output',
-    title: 'Résultat',
-    description: 'Notification Slack, Update CRM, Mail Client',
-    variant: 'default',
+    icon: "output",
+    title: "Résultat",
+    description: "Notification Slack, Update CRM, Mail Client",
+    variant: "default",
   },
 ];
 
 const expertiseCards = [
   {
-    title: 'Discovery & Cadrage',
-    description: 'Analyse des besoins, ateliers, parcours utilisateurs, définition des KPIs.',
+    title: "Discovery & Cadrage",
+    description:
+      "Analyse des besoins, ateliers, parcours utilisateurs, définition des KPIs.",
   },
   {
-    title: 'Coordination',
-    description: 'Interface entre métiers, direction et équipes techniques, gestion des parties prenantes.',
+    title: "Coordination",
+    description:
+      "Interface entre métiers, direction et équipes techniques, gestion des parties prenantes.",
   },
   {
-    title: 'Maquettes & Spécifications',
-    description: "Rédaction de user stories, critères d'acceptation, wireframes et accompagnement des développeurs.",
+    title: "Maquettes & Spécifications",
+    description:
+      "Rédaction de user stories, critères d'acceptation, wireframes et accompagnement des développeurs.",
   },
   {
-    title: 'IA & Automatisation',
-    description: "Prototypage rapide, intégration d'outils IA, workflows automatisés pour optimiser les processus produit.",
+    title: "IA & Automatisation",
+    description:
+      "Prototypage rapide, intégration d'outils IA, workflows automatisés pour optimiser les processus produit.",
   },
 ];
 
 const methodSteps = [
   {
-    num: '01',
-    title: 'Découverte',
-    description: 'Immersion dans votre métier pour identifier les frictions automatisables et les gains de productivité.',
+    num: "01",
+    title: "Comprendre",
+    description:
+      "Identifier le problème, les utilisateurs et la valeur recherchée.",
   },
   {
-    num: '02',
-    title: 'Cadrage',
-    description: 'Définition de l\'architecture logicielle et choix des outils (No-Code, Low-Code ou Full-Stack IA).',
+    num: "02",
+    title: "Cadrer",
+    description:
+      "Transformer le besoin en parcours, fonctionnalités et critères de réussite.",
   },
   {
-    num: '03',
-    title: 'Prototype',
-    description: "Construction itérative d'un MVP fonctionnel pour valider la valeur ajoutée réelle sur le terrain.",
+    num: "03",
+    title: "Prototyper",
+    description:
+      "Tester rapidement une solution, notamment avec l'IA et les outils de prototypage.",
   },
   {
-    num: '04',
-    title: 'Déploiement',
-    description: 'Mise en production, monitoring des performances IA et accompagnement au changement.',
+    num: "04",
+    title: "Livrer et apprendre",
+    description:
+      "Collaborer avec les équipes techniques, tester, mesurer et itérer.",
   },
 ];
 
@@ -115,18 +124,20 @@ export default function Home() {
             <div className="max-w-[720px]">
               <div className="inline-block px-3 py-1 border border-accent mb-3">
                 <span className="font-mono text-accent text-xs uppercase tracking-[0.08em]">
-                  PRODUCT OWNER · IA &amp; AUTOMATISATION
+                  PRODUCT OWNER · AI PRODUCT · AUTOMATISATION
                 </span>
               </div>
               <h1 className="text-4xl md:text-5xl leading-[1.15] tracking-tight font-extrabold my-3 mb-6">
-                Product Owner spécialisée dans les produits augmentés par l&apos;<span className="text-accent">IA</span>
+                Product Owner spécialisée dans les produits augmentés par
+                l&apos;<span className="text-accent">IA</span>
               </h1>
               <p className="text-lg leading-relaxed text-muted mb-12 max-w-[640px]">
-                Je conçois et fais évoluer des produits digitaux de la découverte à la livraison, en combinant
-                Product Ownership, IA, automatisation et culture technique.
+                Je conçois et fais évoluer des produits digitaux de la
+                découverte à la livraison, en combinant Product Ownership, IA,
+                automatisation et compréhension technique.
                 <br />
-                Je construis également des prototypes et outils IA pour transformer des problématiques métier en
-                solutions concrètes.
+                Je construis également des prototypes et outils IA pour
+                transformer des problématiques métier en solutions concrètes.
               </p>
               <div className="flex flex-wrap gap-4">
                 <a
@@ -156,7 +167,9 @@ export default function Home() {
                 <span className="font-mono text-accent-soft uppercase tracking-[0.08em] block mb-2 text-[13px]">
                   Portfolio
                 </span>
-                <h2 className="text-2xl font-semibold m-0">Études de cas techniques</h2>
+                <h2 className="text-2xl font-semibold m-0">
+                  Produits & réalisations
+                </h2>
               </div>
             </div>
 
@@ -170,8 +183,12 @@ export default function Home() {
                   <span className="font-mono text-accent-soft text-xs mb-4 block">
                     {project.num} / {project.category}
                   </span>
-                  <h3 className="text-xl font-semibold mb-4">{project.title}</h3>
-                  <p className="text-accent-soft mb-6 flex-grow leading-relaxed">{project.description}</p>
+                  <h3 className="text-xl font-semibold mb-4">
+                    {project.title}
+                  </h3>
+                  <p className="text-accent-soft mb-6 flex-grow leading-relaxed">
+                    {project.description}
+                  </p>
                   <div className="mb-6 text-sm">
                     <div className="flex justify-between border-b border-white/10 pb-2 mb-4">
                       <span className="opacity-60">Contexte</span>
@@ -179,7 +196,9 @@ export default function Home() {
                     </div>
                     <div className="flex justify-between border-b border-white/10 pb-2">
                       <span className="opacity-60">Résultat</span>
-                      <span className="text-accent-soft">{project.resultat}</span>
+                      <span className="text-accent-soft">
+                        {project.resultat}
+                      </span>
                     </div>
                   </div>
                   <div className="flex flex-wrap gap-2">
@@ -214,7 +233,9 @@ export default function Home() {
               <span className="font-mono text-accent uppercase tracking-[0.08em] block mb-2 text-[13px]">
                 Automatisations
               </span>
-              <h2 className="text-2xl font-semibold m-0">Le Flux Intelligent</h2>
+              <h2 className="text-2xl font-semibold m-0">
+                Le Flux Intelligent
+              </h2>
             </div>
             <div className="border border-line p-6 md:p-12 lg:p-16 bg-surface-card">
               <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr_auto_1fr] items-center gap-6">
@@ -222,31 +243,39 @@ export default function Home() {
                   <div key={step.title} className="contents">
                     <div
                       className={
-                        step.variant === 'accent'
-                          ? 'text-center p-6 bg-accent text-white'
-                          : 'text-center p-6 border border-line'
+                        step.variant === "accent"
+                          ? "text-center p-6 bg-accent text-white"
+                          : "text-center p-6 border border-line"
                       }
                     >
                       <span
                         className={`msym text-4xl block mb-4 ${
-                          step.variant === 'accent' ? 'text-white' : 'text-accent'
+                          step.variant === "accent"
+                            ? "text-white"
+                            : "text-accent"
                         }`}
                       >
                         {step.icon}
                       </span>
                       <h3
                         className={`font-mono font-bold text-xs uppercase mb-2 ${
-                          step.variant === 'accent' ? 'text-accent-soft' : 'text-ink'
+                          step.variant === "accent"
+                            ? "text-accent-soft"
+                            : "text-ink"
                         }`}
                       >
                         {step.title}
                       </h3>
-                      <p className={`text-xs m-0 ${step.variant === 'accent' ? 'text-white/80' : 'text-muted'}`}>
+                      <p
+                        className={`text-xs m-0 ${step.variant === "accent" ? "text-white/80" : "text-muted"}`}
+                      >
                         {step.description}
                       </p>
                     </div>
                     {idx < flowSteps.length - 1 && (
-                      <span className="msym hidden md:block text-muted justify-self-center">arrow_forward</span>
+                      <span className="msym hidden md:block text-muted justify-self-center">
+                        arrow_forward
+                      </span>
                     )}
                   </div>
                 ))}
@@ -268,35 +297,46 @@ export default function Home() {
                 priority
               />
               <div className="absolute bottom-8 left-8 bg-accent text-white p-6">
-                <span className="text-4xl font-extrabold block">IA x Produit</span>
-                <span className="font-mono text-xs uppercase">PROTOTYPAGE · AUTOMATISATION · DELIVERY</span>
+                <span className="text-4xl font-extrabold block">
+                  IA x Produit
+                </span>
+                <span className="font-mono text-xs uppercase">
+                  PROTOTYPAGE · AUTOMATISATION · DELIVERY
+                </span>
               </div>
             </div>
             <div>
               <span className="font-mono text-accent uppercase tracking-[0.08em] block mb-2 text-[13px]">
                 Expertise
               </span>
-              <h2 className="text-3xl font-bold tracking-tight mb-6">Du cadrage à la mise en production</h2>
+              <h2 className="text-3xl font-bold tracking-tight mb-6">
+                Du cadrage à la mise en production
+              </h2>
               <div className="text-lg leading-relaxed text-muted mb-6 space-y-4">
                 <p>
-                  En tant que Product Owner, j&apos;ai piloté des produits complexes dans le secteur du livre et de
-                  l&apos;édition : plateformes ebook, abonnements, e-commerce, facturation, EDI et intégrations
-                  métier.
+                  En tant que Product Owner, j&apos;ai piloté des produits
+                  complexes dans le secteur du livre et de l&apos;édition :
+                  plateformes ebook, abonnements, e-commerce, facturation, EDI
+                  et intégrations métier.
                 </p>
                 <p>
-                  Mon rôle ne s&apos;arrête pas à la rédaction de user stories : je cadre les besoins, j&apos;aligne
-                  les parties prenantes, je conçois les parcours utilisateurs et j&apos;accompagne la livraison
-                  jusqu&apos;à la mise en production.
+                  Mon rôle ne s&apos;arrête pas à la rédaction de user stories :
+                  je cadre les besoins, j&apos;aligne les parties prenantes, je
+                  conçois les parcours utilisateurs et j&apos;accompagne la
+                  livraison jusqu&apos;à la mise en production.
                 </p>
                 <p>
-                  Aujourd&apos;hui, j&apos;enrichis cette approche avec l&apos;IA et l&apos;automatisation pour
-                  accélérer l&apos;exploration, le prototypage et les workflows produit.
+                  Aujourd&apos;hui, j&apos;enrichis cette approche avec
+                  l&apos;IA et l&apos;automatisation pour accélérer
+                  l&apos;exploration, le prototypage et les workflows produit.
                 </p>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {expertiseCards.map((card) => (
                   <div key={card.title} className="p-6 border border-line">
-                    <h3 className="text-base font-semibold mb-2 text-accent">{card.title}</h3>
+                    <h3 className="text-base font-semibold mb-2 text-accent">
+                      {card.title}
+                    </h3>
                     <p className="text-sm text-muted m-0">{card.description}</p>
                   </div>
                 ))}
@@ -312,15 +352,21 @@ export default function Home() {
               <span className="font-mono text-accent uppercase tracking-[0.08em] block mb-2 text-[13px]">
                 Workflow
               </span>
-              <h2 className="text-2xl font-semibold m-0">Une Méthodologie en 4 Étapes</h2>
+              <h2 className="text-2xl font-semibold m-0">
+                Une Méthodologie en 4 Étapes
+              </h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {methodSteps.map((step) => (
                 <div key={step.num} className="relative">
-                  <span className="text-6xl font-extrabold text-line/30 absolute -top-4 -left-2">{step.num}</span>
+                  <span className="text-6xl font-extrabold text-line/30 absolute -top-4 -left-2">
+                    {step.num}
+                  </span>
                   <div className="pt-8">
                     <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
-                    <p className="text-sm text-muted leading-relaxed m-0">{step.description}</p>
+                    <p className="text-sm text-muted leading-relaxed m-0">
+                      {step.description}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -329,8 +375,7 @@ export default function Home() {
         </section>
 
         <ContactCta
-          title="Prêt à construire vos prochains produits augmentés par l'IA ?"
-          description="Vous recherchez une Product Owner capable de faire le lien entre métier, produit et technologies IA ? Échangeons sur le poste et sur la façon dont mon profil peut y répondre."
+          description="Vous recherchez une Product Owner capable de faire le lien entre métier, produit et technologies IA ?"
           buttonLabel="Me contacter"
         />
       </main>
