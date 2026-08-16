@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
+  <style>
+    body { margin: 0; }
+    .msym { font-family: 'Material Symbols Outlined'; font-weight: normal; font-style: normal; font-size: 24px; line-height: 1; letter-spacing: normal; text-transform: none; display: inline-block; white-space: nowrap; word-wrap: normal; direction: ltr; -webkit-font-smoothing: antialiased; }
+    a.eslink { color: #0058be; text-decoration: none; }
+    a.eslink:hover { color: #004395; }
+    .cat-btn:hover { background: rgba(255,255,255,0.08); }
+    .proj-row:hover { background: rgba(255,255,255,0.05); }
+  </style>
+</helmet>
+
+<div style="font-family: 'Inter', sans-serif; background: #fcf9f8; color: #1c1b1b; -webkit-font-smoothing: antialiased;">
+
+  <!-- Top App Bar -->
+  <header style="position: sticky; top: 0; z-index: 50; background: rgba(252,249,248,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid #c2c6d6;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 80px); display: flex; justify-content: space-between; align-items: center; height: 80px; background-color: #F4F4F4">
+      <a href="Eden Sahile Portfolio.dc.html" style="display: flex; flex-direction: column; text-decoration: none; color: inherit;">
+        <span style="font-size: 24px; line-height: 1.3; font-weight: 700; color: #1c1b1b; letter-spacing: -0.01em;">Eden Sahilé</span>
+        <span style="font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: #0058be;">AI Product Builder</span>
+      </a>
+      <nav style="display: flex; align-items: center; gap: 24px;">
+        <a href="Tous Les Projets.dc.html" style="font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 0.05em; color: #0058be; text-decoration: none;">PROJETS</a>
+        <a href="Eden Sahile Portfolio.dc.html#expertise" class="eslink" style="font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 0.05em; color: #424754;">EXPERTISE</a>
+        <a href="#" class="eslink" style="font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 0.05em; color: #424754;">CV</a>
+        <a href="Eden Sahile Portfolio.dc.html#contact" style="background: #0058be; color: #fff; padding: 8px 24px; font-size: 14px; font-weight: 600; text-decoration: none;">CONTACT</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Titre page -->
+    <section style="background-color: #E2E2E2; padding: 48px 0;">
+      <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 80px);">
+        <span style="font-family: 'Space Mono', monospace; color: #0058be; text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 16px; font-size: 13px;">Portfolio</span>
+        <h1 style="font-size: clamp(32px, 5vw, 44px); line-height: 1.15; letter-spacing: -0.02em; font-weight: 800; margin: 0 0 16px;">Tous les projets</h1>
+        <p style="font-size: 18px; line-height: 1.6; color: #424754; margin: 0; max-width: 640px;">Études de cas techniques : cadrage produit, automatisations et outils IA construits sur mesure.</p>
+      </div>
+    </section>
+
+    <!-- Filtres + Liste -->
+    <section style="background: #313030; padding: 48px 0; color: #fcf9f8;">
+      <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 80px); display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start;">
+
+        <!-- Sidebar filtres -->
+        <aside style="width: 220px; flex-shrink: 0; position: sticky; top: 100px;">
+          <span style="font-family: 'Space Mono', monospace; color: #bec6e0; text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 16px; font-size: 12px;">Filtrer par catégorie</span>
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <button onClick="{{ setAll }}" class="cat-btn" style="{{ allBtnStyle }}">
+              <span>Tous les projets</span>
+              <span style="font-family: 'Space Mono', monospace; font-size: 12px; opacity: 0.6;">{{ totalCount }}</span>
+            </button>
+            <sc-for list="{{ categories }}" as="cat" hint-placeholder-count="3">
+              <button onClick="{{ cat.select }}" class="cat-btn" style="{{ cat.btnStyle }}">
+                <span>{{ cat.label }}</span>
+                <span style="font-family: 'Space Mono', monospace; font-size: 12px; opacity: 0.6;">{{ cat.count }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </aside>
+
+        <!-- Liste horizontale -->
+        <div style="flex: 1; min-width: 320px; display: flex; flex-direction: column; border-top: 1px solid rgba(255,255,255,0.1);">
+          <sc-for list="{{ projects }}" as="proj" hint-placeholder-count="3">
+            <div class="proj-row" style="border-bottom: 1px solid rgba(255,255,255,0.1); padding: 24px 16px; transition: background 0.15s;">
+              <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 16px;">
+                <div style="flex: 1; min-width: 240px;">
+                  <span style="font-family: 'Space Mono', monospace; color: #bec6e0; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 8px;">{{ proj.num }} / {{ proj.categoryLabel }}</span>
+                  <h3 style="font-size: 19px; font-weight: 600; margin: 0 0 8px;">{{ proj.title }}</h3>
+                  <p style="color: #bec6e0; margin: 0; line-height: 1.5; font-size: 14px; max-width: 620px;">{{ proj.summary }}</p>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px; flex-shrink: 0;">
+                  <button onClick="{{ proj.toggle }}" style="background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #fcf9f8; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                    <span class="msym" style="font-size: 20px;">{{ proj.expandIcon }}</span>
+                  </button>
+                  <a href="{{ proj.href }}" style="background: #0058be; color: #fff; padding: 10px 20px; font-weight: 600; font-size: 13px; text-decoration: none; white-space: nowrap;">Voir le projet</a>
+                </div>
+              </div>
+              <sc-if value="{{ proj.isExpanded }}" hint-placeholder-val="{{ false }}">
+                <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.08); display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px;">
+                  <div>
+                    <span style="opacity: 0.6; font-size: 12px; display: block; margin-bottom: 4px;">Contexte</span>
+                    <span style="font-size: 14px;">{{ proj.contexte }}</span>
+                  </div>
+                  <div>
+                    <span style="opacity: 0.6; font-size: 12px; display: block; margin-bottom: 4px;">Résultat</span>
+                    <span style="font-size: 14px; color: #bec6e0;">{{ proj.resultat }}</span>
+                  </div>
+                  <div style="grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px;">
+                    <sc-for list="{{ proj.tags }}" as="tag" hint-placeholder-count="3">
+                      <span style="padding: 4px 8px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); font-family: 'Space Mono', monospace; font-size: 10px;">{{ tag }}</span>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-if>
+            </div>
+          </sc-for>
+          <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+            <div style="padding: 48px 16px; text-align: center; color: #bec6e0; font-size: 14px;">Aucun projet dans cette catégorie pour le moment.</div>
+          </sc-if>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section id="contact" style="padding: 64px 0; background: #0058be; color: #fff; position: relative; overflow: hidden;">
+      <div style="max-width: 800px; margin: 0 auto; padding: 0 24px; text-align: center; position: relative; z-index: 1;">
+        <h2 style="font-size: clamp(32px, 5vw, 48px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; margin: 0 0 24px;">Envie d'échanger&nbsp;?</h2>
+        <p style="font-size: 18px; line-height: 1.6; opacity: 0.9; margin: 0 0 48px;">Je recherche un poste en CDI mêlant Produit et Intelligence Artificielle.</p>
+        <a href="mailto:contact@edensahile.com" style="display: inline-flex; align-items: center; gap: 12px; background: #fff; color: #0058be; padding: 20px 48px; font-weight: 700; font-size: 18px; text-decoration: none;">
+          Échangeons sur votre poste
+          <span class="msym">send</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer style="background: #313030; padding: 48px 0; color: #fcf9f8; border-top: 1px solid #3f465c;">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 80px); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px;">
+      <div style="display: flex; flex-direction: column;">
+        <span style="font-size: 20px; font-weight: 700; color: #fcf9f8;">Eden Sahilé</span>
+        <span style="font-family: 'Space Mono', monospace; font-size: 11px; color: rgba(190,198,224,0.7); text-transform: uppercase;">© 2026. Built for precision.</span>
+      </div>
+      <div style="display: flex; gap: 24px;">
+        <a href="#" class="eslink" style="font-family: 'Space Mono', monospace; font-size: 12px; color: #fcf9f8;">LINKEDIN</a>
+        <a href="#" class="eslink" style="font-family: 'Space Mono', monospace; font-size: 12px; color: #fcf9f8;">GITHUB</a>
+        <a href="#" class="eslink" style="font-family: 'Space Mono', monospace; font-size: 12px; color: #fcf9f8;">TWITTER</a>
+        <a href="#" class="eslink" style="font-family: 'Space Mono', monospace; font-size: 12px; color: #fcf9f8;">MENTIONS LÉGALES</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { activeCategory: 'all', expanded: {} };
+
+  projects = [
+    {
+      id: 'devis',
+      category: 'genai-ops',
+      categoryLabel: 'Gen-AI Ops',
+      num: '01',
+      title: "Landing page demande de devis (envoi devis automatique)",
+      summary: "Maison Buna, une entreprise qui vend du café, avait besoin d'une landing page où les clients pouvaient effectuer des demandes de devis avec un envoi automatique des devis au format PDF par mail.",
+      contexte: 'Scale-up SaaS',
+      resultat: 'Outil livré',
+      tags: ['CLAUDE CODE', 'OPENAI', 'PRO'],
+      href: '#'
+    },
+    {
+      id: 'storyforge',
+      category: 'product-ownership',
+      categoryLabel: 'Product Ownership',
+      num: '02',
+      title: "StoryForge AI : générateur de user stories contextualisé par IA",
+      summary: "Outil qui transforme un brief métier en user stories structurées, enrichies par un pipeline RAG sur la documentation d'un client.",
+      contexte: 'Projet personnel',
+      resultat: 'En production',
+      tags: ['REACT', 'CLAUDE API', 'PINECONE'],
+      href: 'Projet Detail.dc.html'
+    },
+    {
+      id: 'support',
+      category: 'llm-integration',
+      categoryLabel: 'LLM Integration',
+      num: '03',
+      title: 'Assistant Support Client RAG',
+      summary: "Implémentation d'une base de connaissance vectorielle pour automatiser 60% des tickets de support niveau 1.",
+      contexte: 'E-commerce',
+      resultat: '-30% OpEx',
+      tags: ['PINECONE', 'LANGCHAIN', 'PYTHON'],
+      href: '#'
+    },
+    {
+      id: 'make-recette',
+      category: 'automatisation',
+      categoryLabel: 'Automatisation',
+      num: '04',
+      title: 'Automatisation du suivi de recette (Make)',
+      summary: "Workflow Make qui surveille un Google Sheet de recette, crée automatiquement une carte Trello pour chaque bug KO et renvoie le lien de traçabilité dans le fichier source.",
+      contexte: 'Mission chez Amalivre',
+      resultat: 'Déployé',
+      tags: ['GOOGLE SHEETS', 'MAKE', 'TRELLO'],
+      href: 'Projet Detail - Automatisation Make.dc.html'
+    }
+  ];
+
+  toggleExpand(id) {
+    this.setState(s => ({ expanded: { ...s.expanded, [id]: !s.expanded[id] } }));
+  }
+
+  setCategory(cat) {
+    this.setState({ activeCategory: cat });
+  }
+
+  btnStyle(active) {
+    return active
+      ? 'display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;background:#0058be;color:#fff;border:none;font-family:Inter,sans-serif;font-size:14px;text-align:left;cursor:pointer;width:100%;'
+      : 'display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;background:transparent;color:#fcf9f8;border:none;font-family:Inter,sans-serif;font-size:14px;text-align:left;cursor:pointer;width:100%;';
+  }
+
+  renderVals() {
+    const uniqueCats = [...new Set(this.projects.map(p => p.category))];
+    const categories = uniqueCats.map(catKey => {
+      const sample = this.projects.find(p => p.category === catKey);
+      const isActive = this.state.activeCategory === catKey;
+      return {
+        key: catKey,
+        label: sample.categoryLabel,
+        count: this.projects.filter(p => p.category === catKey).length,
+        select: () => this.setCategory(catKey),
+        btnStyle: this.btnStyle(isActive)
+      };
+    });
+
+    const filtered = this.state.activeCategory === 'all'
+      ? this.projects
+      : this.projects.filter(p => p.category === this.state.activeCategory);
+
+    const projects = filtered.map(p => ({
+      ...p,
+      isExpanded: !!this.state.expanded[p.id],
+      expandIcon: this.state.expanded[p.id] ? 'expand_less' : 'expand_more',
+      toggle: () => this.toggleExpand(p.id)
+    }));
+
+    return {
+      categories,
+      projects,
+      totalCount: this.projects.length,
+      noResults: projects.length === 0,
+      allBtnStyle: this.btnStyle(this.state.activeCategory === 'all'),
+      setAll: () => this.setCategory('all')
+    };
+  }
+}
+
+</script>
+</body>
+</html>

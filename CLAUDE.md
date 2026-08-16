@@ -19,6 +19,8 @@
    - Le design system (couleurs, typographie, responsive)
    - La règle de validation obligatoire
    - La tâche précise à exécuter
+  
+5.**Ne lance pas automatiquement Playwright quand tu as fini une tâche. je veux le faire manuellement sauf si un sous-agent est spawné**
 
 ---
 

@@ -1,288 +1,341 @@
-'use client';
-
-import React, { useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, ArrowUpRight, Mail } from 'lucide-react';
+import Image from 'next/image';
+import photoProfil from '../public/images/photo-profil.png';
+import SiteHeader from './components/SiteHeader';
+import SiteFooter from './components/SiteFooter';
+import ContactCta from './components/ContactCta';
 
-const GithubIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
-  </svg>
-);
+const previewProjects = [
+  {
+    num: '01',
+    category: 'GEN-AI OPS',
+    title: 'Landing page demande de devis (envoi devis automatique)',
+    description:
+      "Maison Buna qui est une entreprise qui vend du café avait besoin d'une landing page où les clients pouvaient effectuer des demandes de devis avec un envoi automatique des devis au format PDF par mail.",
+    contexte: 'Scale-up SaaS',
+    resultat: 'Outil livré',
+    tags: ['CLAUDE CODE', 'OPENAI', 'PRO'],
+    href: '/projets/maison-buna',
+  },
+  {
+    num: '02',
+    category: 'PRODUCT OWNERSHIP',
+    title: "StoryForge AI : Générateur d'user stories",
+    description: "Outil qui permet de générer des user stories contextualisé avec la mise en place d'un RAG",
+    contexte: 'Fintech Tier 1',
+    resultat: 'Zero Downtime',
+    tags: ['JIRA', 'SQL', 'PERSO'],
+    href: '/projets/storyforge-ai',
+  },
+  {
+    num: '03',
+    category: 'LLM INTEGRATION',
+    title: 'Assistant Support Client RAG',
+    description:
+      'Implémentation d\'une base de connaissance vectorielle pour automatiser 60% des tickets de support niveau 1.',
+    contexte: 'E-commerce',
+    resultat: '-30% OpEx',
+    tags: ['PINECONE', 'LANGCHAIN', 'PYTHON'],
+    href: '/projets/support-rag',
+  },
+];
 
-const LinkedinIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-  </svg>
-);
+const flowSteps = [
+  {
+    icon: 'bolt',
+    title: 'Déclencheur',
+    description: 'Webhook, Email, Nouveau Record Airtable',
+    variant: 'default',
+  },
+  {
+    icon: 'psychology',
+    title: 'Logique IA',
+    description: 'LLM Processing, RAG, Extraction de Données',
+    variant: 'accent',
+  },
+  {
+    icon: 'output',
+    title: 'Résultat',
+    description: 'Notification Slack, Update CRM, Mail Client',
+    variant: 'default',
+  },
+];
+
+const expertiseCards = [
+  {
+    title: 'Discovery & Cadrage',
+    description: 'Analyse des besoins, ateliers, parcours utilisateurs, définition des KPIs.',
+  },
+  {
+    title: 'Coordination',
+    description: 'Interface entre métiers, direction et équipes techniques, gestion des parties prenantes.',
+  },
+  {
+    title: 'Maquettes & Spécifications',
+    description: "Rédaction de user stories, critères d'acceptation, wireframes et accompagnement des développeurs.",
+  },
+  {
+    title: 'IA & Automatisation',
+    description: "Prototypage rapide, intégration d'outils IA, workflows automatisés pour optimiser les processus produit.",
+  },
+];
+
+const methodSteps = [
+  {
+    num: '01',
+    title: 'Découverte',
+    description: 'Immersion dans votre métier pour identifier les frictions automatisables et les gains de productivité.',
+  },
+  {
+    num: '02',
+    title: 'Cadrage',
+    description: 'Définition de l\'architecture logicielle et choix des outils (No-Code, Low-Code ou Full-Stack IA).',
+  },
+  {
+    num: '03',
+    title: 'Prototype',
+    description: "Construction itérative d'un MVP fonctionnel pour valider la valeur ajoutée réelle sur le terrain.",
+  },
+  {
+    num: '04',
+    title: 'Déploiement',
+    description: 'Mise en production, monitoring des performances IA et accompagnement au changement.',
+  },
+];
 
 export default function Home() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const projects = [
-    {
-      name: 'FlowDiff-Pro',
-      description: 'Plateforme de commande pour libraires avec authentification et base de données Supabase.',
-      tags: ['React', 'Node.js', 'Supabase', 'PostgreSQL'],
-      link: 'https://book-flow-omega.vercel.app/login',
-      detailLink: '/projects/flowdiff-pro',
-    },
-    {
-      name: 'Crazee Burger',
-      description: "Application de commande de burgers développée sans IA dans le cadre d'une formation React complète.",
-      tags: ['React', 'ViteJS', 'Firebase', 'Styled-Components'],
-      link: 'https://crazee-burger-phi-murex.vercel.app/order/EDEN',
-      detailLink: '/projects/crazee-burger',
-    },
-  ];
-
-  const experience = [
-    {
-      role: 'Product Owner',
-      company: 'Amalivre',
-      duration: 'Mai 2023 - Présent',
-      description:
-        'Pilotage de 4 produits (e-commerce, ebooks, facturation, abonnements) | 6 développeurs | 4 équipes. Mise en place de Scrum, modernisation du site (monolithe → micro-services React/Next.js), migration progressive des modules.',
-      highlights: [
-        'Facturation optimisée (2j → 1h)',
-        'Implémentation Scrum réussie',
-        'Refonte site ebooks avec changement prestataire',
-      ],
-    },
-    {
-      role: 'Chargée de diffusion numérique / Cheffe de projet web',
-      company: 'Amalivre',
-      duration: 'Sept 2022 - Mai 2023',
-      description:
-        'Gestion des ebooks, catalogue numérique, refonte site web, pilotage de projets agiles avec les développeurs.',
-      highlights: [
-        'Pilotage refonte site ebooks',
-        'Supervision évolutions e-commerce',
-        'Gestion catalogue numérique intégration FTP',
-      ],
-    },
-  ];
-
-  const skills = {
-    'Product & Agilité': ['Scrum', 'Kanban', 'Backlog', 'Priorisation', 'User stories', 'Recette', 'Roadmap'],
-    'Tech & Dev': ['React', 'Node.js', 'ViteJS', 'API REST', 'PostgreSQL', 'Git', 'Github', 'Automatisation (Make, n8n)'],
-    'UX & Design': ['Figma', 'Adobe XD', 'Wireframes', 'Prototypes', 'User testing'],
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
-      {/* Header */}
-      <header className="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
-            eden.dev
-          </div>
+    <div>
+      <SiteHeader />
 
-          <nav className="hidden md:flex gap-8">
-            {['À propos', 'Projets', 'Expérience', 'Compétences'].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase().replace('à ', '')}`}
-                className="text-sm font-medium text-slate-300 hover:text-blue-400 transition-colors"
-              >
-                {item}
-              </a>
-            ))}
-          </nav>
-
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden text-slate-300"
-            aria-label="Menu"
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-
-        {mobileMenuOpen && (
-          <div className="md:hidden border-t border-slate-800 bg-slate-900 px-6 py-4 space-y-3">
-            {['À propos', 'Projets', 'Expérience', 'Compétences'].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase().replace('à ', '')}`}
-                onClick={() => setMobileMenuOpen(false)}
-                className="block text-sm font-medium text-slate-300 hover:text-blue-400"
-              >
-                {item}
-              </a>
-            ))}
-          </div>
-        )}
-      </header>
-
-      {/* Hero */}
-      <section className="max-w-6xl mx-auto px-6 py-24 md:py-32">
-        <div className="space-y-8">
-          <div>
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 leading-tight">
-              Eden Sahilé
-            </h1>
-            <p className="text-xl md:text-2xl text-slate-300 mb-6">
-              Product Owner technique | UX Design | Full-Stack JS
-            </p>
-            <p className="text-base md:text-lg text-slate-400 max-w-2xl leading-relaxed">
-              Je comprends le code (React, Node.js), je conçois les interfaces (Figma) et je traduis les besoins métier en user stories.
-              <br />
-              Cette vision globale me permet de fluidifier la collaboration dev/métier et d'accélérer la delivery.
-            </p>
-          </div>
-
-          <div className="flex flex-wrap gap-4 pt-6">
-            <a
-              href="#projets"
-              className="px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-medium rounded-lg hover:shadow-lg hover:shadow-blue-500/30 transition-all"
-            >
-              Voir mes projets
-            </a>
-            <a
-              href="https://linkedin.com/in/edensahile-99b088112"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3 border border-slate-600 text-slate-300 font-medium rounded-lg hover:border-slate-400 hover:text-slate-200 transition-all flex items-center gap-2"
-            >
-              <LinkedinIcon /> LinkedIn
-            </a>
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 pt-12">
-            <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4">
-              <p className="text-xs text-slate-400 uppercase tracking-wide">Impact</p>
-              <p className="text-2xl font-bold text-white mt-2">2j → 1h</p>
-              <p className="text-xs text-slate-400 mt-1">Facturation optimisée</p>
-            </div>
-            <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4">
-              <p className="text-xs text-slate-400 uppercase tracking-wide">Produits</p>
-              <p className="text-2xl font-bold text-white mt-2">4</p>
-              <p className="text-xs text-slate-400 mt-1">En pilotage simultané</p>
-            </div>
-            <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4 col-span-2 md:col-span-1">
-              <p className="text-xs text-slate-400 uppercase tracking-wide">Expérience</p>
-              <p className="text-2xl font-bold text-white mt-2">3+</p>
-              <p className="text-xs text-slate-400 mt-1">Ans en Product</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Projets */}
-      <section id="projets" className="max-w-6xl mx-auto px-6 py-20 border-t border-slate-800">
-        <h2 className="text-4xl font-bold text-white mb-12">Projets</h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {projects.map((project, idx) => (
-            <Link
-              key={idx}
-              href={project.detailLink}
-              className="group bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 rounded-xl p-5 hover:border-blue-500/50 transition-all hover:shadow-lg hover:shadow-blue-500/10 flex flex-col"
-            >
-              <div className="flex items-start justify-between mb-3">
-                <h3 className="text-lg font-bold text-white leading-snug">{project.name}</h3>
-                <span className="ml-3 p-2 bg-slate-700/50 rounded-lg group-hover:bg-blue-500/20 group-hover:text-blue-400 transition-all flex-shrink-0">
-                  <ArrowUpRight size={16} className="text-slate-400 group-hover:text-blue-400 transition-colors" />
+      <main>
+        {/* Hero */}
+        <section className="min-h-[78vh] flex flex-col justify-center bg-surface-mid relative">
+          <div className="max-w-[1280px] w-full mx-auto px-5 md:px-10 lg:px-20 py-12">
+            <div className="max-w-[720px]">
+              <div className="inline-block px-3 py-1 border border-accent mb-3">
+                <span className="font-mono text-accent text-xs uppercase tracking-[0.08em]">
+                  PRODUCT OWNER · IA &amp; AUTOMATISATION
                 </span>
               </div>
-
-              <p className="text-sm text-slate-400 leading-relaxed mb-4 flex-1">{project.description}</p>
-
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag, i) => (
-                  <span key={i} className="px-2.5 py-0.5 bg-slate-700/70 text-slate-300 text-xs rounded-full border border-slate-600/50">
-                    {tag}
-                  </span>
-                ))}
+              <h1 className="text-4xl md:text-5xl leading-[1.15] tracking-tight font-extrabold my-3 mb-6">
+                Product Owner spécialisée dans les produits augmentés par l&apos;<span className="text-accent">IA</span>
+              </h1>
+              <p className="text-lg leading-relaxed text-muted mb-12 max-w-[640px]">
+                Product Owner depuis 4 ans, avec plus de 20 ans d&apos;expérience transverse entre métier, digital et
+                produit, je couvre <span className="text-accent">l&apos;<b>ensemble du cycle de conception</b></span> :{' '}
+                <b>découverte</b>, <b>cadrage</b>, <b>user stories</b>, <b>wireframes</b>, <b>maquettes</b> et{' '}
+                <b>livraison</b>. Aujourd&apos;hui, j&apos;étends cette expertise à l&apos;intégration de l&apos;IA et de
+                l&apos;automatisation dans les pratiques produit.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href="mailto:edensahile28@gmail.com"
+                  className="bg-accent text-white px-8 py-4 font-semibold text-base inline-flex items-center gap-2 hover:bg-accent-hover transition-colors"
+                >
+                  Me contacter
+                  <span className="msym text-[18px]">send</span>
+                </a>
+                <a
+                  href="#"
+                  className="border border-ink text-ink px-8 py-4 font-semibold text-base inline-flex items-center gap-2 hover:bg-ink hover:text-paper transition-colors"
+                >
+                  Voir mon CV
+                  <span className="msym text-[18px]">description</span>
+                </a>
               </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* Expérience */}
-      <section id="expérience" className="max-w-6xl mx-auto px-6 py-20 border-t border-slate-800">
-        <h2 className="text-4xl font-bold text-white mb-12">Expérience</h2>
-
-        <div className="space-y-8">
-          {experience.map((exp, idx) => (
-            <div key={idx} className="bg-slate-800/30 border border-slate-700 rounded-xl p-8">
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                <div>
-                  <h3 className="text-xl font-bold text-white">{exp.role}</h3>
-                  <p className="text-blue-400 font-medium">{exp.company}</p>
-                </div>
-                <p className="text-sm text-slate-400 mt-2 md:mt-0">{exp.duration}</p>
-              </div>
-              <p className="text-slate-300 mb-4 leading-relaxed">{exp.description}</p>
-              <ul className="space-y-2">
-                {exp.highlights.map((highlight, i) => (
-                  <li key={i} className="flex gap-3 text-slate-400 text-sm">
-                    <span className="text-cyan-400 flex-shrink-0">✓</span>
-                    <span>{highlight}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
+        </section>
 
-      {/* Compétences */}
-      <section id="compétences" className="max-w-6xl mx-auto px-6 py-20 border-t border-slate-800">
-        <h2 className="text-4xl font-bold text-white mb-12">Compétences</h2>
+        {/* Projets */}
+        <section id="projets" className="bg-surface-dark py-12 text-paper">
+          <div className="max-w-[1280px] mx-auto px-5 md:px-10 lg:px-20">
+            <div className="flex flex-wrap justify-between items-end gap-4 mb-12">
+              <div>
+                <span className="font-mono text-accent-soft uppercase tracking-[0.08em] block mb-2 text-[13px]">
+                  Portfolio
+                </span>
+                <h2 className="text-2xl font-semibold m-0">Études de cas techniques</h2>
+              </div>
+            </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {Object.entries(skills).map(([category, items]) => (
-            <div key={category} className="bg-slate-800/30 border border-slate-700 rounded-xl p-6">
-              <h3 className="text-lg font-bold text-white mb-4">{category}</h3>
-              <div className="space-y-2">
-                {items.map((skill, i) => (
-                  <div key={i} className="flex items-center gap-2 text-slate-300 text-sm">
-                    <span className="w-2 h-2 bg-blue-400 rounded-full flex-shrink-0" />
-                    {skill}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {previewProjects.map((project) => (
+                <Link
+                  key={project.href}
+                  href={project.href}
+                  className="p-8 border border-white/10 bg-[#424754]/15 flex flex-col h-full hover:border-accent/60 transition-colors"
+                >
+                  <span className="font-mono text-accent-soft text-xs mb-4 block">
+                    {project.num} / {project.category}
+                  </span>
+                  <h3 className="text-xl font-semibold mb-4">{project.title}</h3>
+                  <p className="text-accent-soft mb-6 flex-grow leading-relaxed">{project.description}</p>
+                  <div className="mb-6 text-sm">
+                    <div className="flex justify-between border-b border-white/10 pb-2 mb-4">
+                      <span className="opacity-60">Contexte</span>
+                      <span>{project.contexte}</span>
+                    </div>
+                    <div className="flex justify-between border-b border-white/10 pb-2">
+                      <span className="opacity-60">Résultat</span>
+                      <span className="text-accent-soft">{project.resultat}</span>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2 py-1 bg-white/5 border border-white/10 font-mono text-[10px]"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            <div className="mt-24 flex justify-center">
+              <Link
+                href="/projets"
+                className="border border-white/20 text-paper px-10 py-4 font-mono uppercase tracking-[0.08em] text-[13px] hover:border-white/50 transition-colors"
+              >
+                Voir tous les projets
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Automatisation */}
+        <section className="py-12 bg-surface-light">
+          <div className="max-w-[1280px] mx-auto px-5 md:px-10 lg:px-20">
+            <div className="text-center mb-12">
+              <span className="font-mono text-accent uppercase tracking-[0.08em] block mb-2 text-[13px]">
+                Automatisations
+              </span>
+              <h2 className="text-2xl font-semibold m-0">Le Flux Intelligent</h2>
+            </div>
+            <div className="border border-line p-6 md:p-12 lg:p-16 bg-surface-card">
+              <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr_auto_1fr] items-center gap-6">
+                {flowSteps.map((step, idx) => (
+                  <div key={step.title} className="contents">
+                    <div
+                      className={
+                        step.variant === 'accent'
+                          ? 'text-center p-6 bg-accent text-white'
+                          : 'text-center p-6 border border-line'
+                      }
+                    >
+                      <span
+                        className={`msym text-4xl block mb-4 ${
+                          step.variant === 'accent' ? 'text-white' : 'text-accent'
+                        }`}
+                      >
+                        {step.icon}
+                      </span>
+                      <h3
+                        className={`font-mono font-bold text-xs uppercase mb-2 ${
+                          step.variant === 'accent' ? 'text-accent-soft' : 'text-ink'
+                        }`}
+                      >
+                        {step.title}
+                      </h3>
+                      <p className={`text-xs m-0 ${step.variant === 'accent' ? 'text-white/80' : 'text-muted'}`}>
+                        {step.description}
+                      </p>
+                    </div>
+                    {idx < flowSteps.length - 1 && (
+                      <span className="msym hidden md:block text-muted justify-self-center">arrow_forward</span>
+                    )}
                   </div>
                 ))}
               </div>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="max-w-6xl mx-auto px-6 py-20 border-t border-slate-800">
-        <div className="bg-gradient-to-r from-blue-900/40 to-cyan-900/40 border border-slate-700 rounded-2xl p-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Intéressé par une collaboration ?
-          </h2>
-          <p className="text-slate-300 mb-8 max-w-xl mx-auto">
-            Je suis actuellement à la recherche de nouveaux défis en Product Management, IA ou développement full-stack.
-          </p>
-          <div className="flex flex-col md:flex-row gap-4 justify-center">
-            <a
-              href="mailto:edensahile2.0@gmail.com"
-              className="px-8 py-3 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition-all flex items-center justify-center gap-2"
-            >
-              <Mail size={18} /> Envoyer un email
-            </a>
-            <a
-              href="https://github.com/macbookeden"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-3 border border-slate-600 text-slate-300 font-medium rounded-lg hover:border-slate-400 transition-all flex items-center justify-center gap-2"
-            >
-              <GithubIcon /> GitHub
-            </a>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Footer */}
-      <footer className="max-w-6xl mx-auto px-6 py-12 border-t border-slate-800 text-center text-slate-400 text-sm">
-        <p>© 2026 Eden Sahilé. Buildé avec curiosité et passion pour la technologie.</p>
-      </footer>
+        {/* Expertise */}
+        <section id="expertise" className="py-12 bg-surface-mid">
+          <div className="max-w-[1280px] mx-auto px-5 md:px-10 lg:px-20 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div className="relative aspect-square bg-[#f0eded] overflow-hidden">
+              <Image
+                src={photoProfil}
+                alt="Eden Sahilé"
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                priority
+              />
+              <div className="absolute bottom-8 left-8 bg-accent text-white p-6">
+                <span className="text-4xl font-extrabold block">IA x Produit</span>
+                <span className="font-mono text-xs uppercase">PROTOTYPAGE · AUTOMATISATION · DELIVERY</span>
+              </div>
+            </div>
+            <div>
+              <span className="font-mono text-accent uppercase tracking-[0.08em] block mb-2 text-[13px]">
+                Expertise
+              </span>
+              <h2 className="text-3xl font-bold tracking-tight mb-6">Du cadrage à la mise en production</h2>
+              <div className="text-lg leading-relaxed text-muted mb-6 space-y-4">
+                <p>
+                  En tant que Product Owner, j&apos;ai piloté des produits complexes dans le secteur du livre et de
+                  l&apos;édition : plateformes ebook, abonnements, e-commerce, facturation, EDI et intégrations
+                  métier.
+                </p>
+                <p>
+                  Mon rôle ne s&apos;arrête pas à la rédaction de user stories : je cadre les besoins, j&apos;aligne
+                  les parties prenantes, je conçois les parcours utilisateurs et j&apos;accompagne la livraison
+                  jusqu&apos;à la mise en production.
+                </p>
+                <p>
+                  Aujourd&apos;hui, j&apos;enrichis cette approche avec l&apos;IA et l&apos;automatisation pour
+                  accélérer l&apos;exploration, le prototypage et les workflows produit.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {expertiseCards.map((card) => (
+                  <div key={card.title} className="p-6 border border-line">
+                    <h3 className="text-base font-semibold mb-2 text-accent">{card.title}</h3>
+                    <p className="text-sm text-muted m-0">{card.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Méthode */}
+        <section className="py-12 bg-surface-light">
+          <div className="max-w-[1280px] mx-auto px-5 md:px-10 lg:px-20">
+            <div className="text-center mb-12">
+              <span className="font-mono text-accent uppercase tracking-[0.08em] block mb-2 text-[13px]">
+                Workflow
+              </span>
+              <h2 className="text-2xl font-semibold m-0">Une Méthodologie en 4 Étapes</h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {methodSteps.map((step) => (
+                <div key={step.num} className="relative">
+                  <span className="text-6xl font-extrabold text-line/30 absolute -top-4 -left-2">{step.num}</span>
+                  <div className="pt-8">
+                    <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
+                    <p className="text-sm text-muted leading-relaxed m-0">{step.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <ContactCta
+          title="Prêt à construire vos prochains produits augmentés par l'IA ?"
+          description="Vous recherchez une Product Owner capable de faire le lien entre métier, produit et technologies IA ? Échangeons sur le poste et sur la façon dont mon profil peut y répondre."
+          buttonLabel="Me contacter"
+        />
+      </main>
+
+      <SiteFooter />
     </div>
   );
 }
